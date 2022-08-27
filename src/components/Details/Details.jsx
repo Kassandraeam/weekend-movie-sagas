@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
 import React, { useEffect } from 'react';
-import MovieList from '../MovieList/MovieList';
 import { useParams } from 'react-router-dom';
 
 
@@ -9,8 +8,10 @@ import { useParams } from 'react-router-dom';
 function Details() {
 
     const params = useParams();
-    const movie = useSelector(store => store.movies);
+
+    const movies = useSelector(store => store.movies);
     const dispatch = useDispatch();
+    console.log(`Here is the id of the page of the movie you clicked on: ${params.id}`)
 
 
     // When I console log (movie) it's an empty array.
@@ -20,20 +21,23 @@ function Details() {
         console.log('Handle Click')
     }
 
+    // I need to send over the ID to my index, and then GET that information
     useEffect(() => {
         console.log('dispatch')
         dispatch({ 
-            type: 'FETCH_MOVIES' 
+            type: 'FETCH_MOVIES',
+            payload: params
         });
     }, []);
 
+    // console.log(`${movies.data}`);
     return(
         <>
         <h1>
             Details
             <button onClick={handleClick}>Show details test</button>
+            
         </h1>
-
         </>
     )
 }

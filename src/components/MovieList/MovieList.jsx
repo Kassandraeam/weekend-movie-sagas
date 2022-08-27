@@ -42,7 +42,6 @@ function MovieList(props) {
                             <h3>{movie.title}</h3>
                             <img src={movie.poster} alt={movie.title}/>
                             <h5>{movie.id}</h5>
-                            <Details movieID={movie.id}/>
                         </div>
                     );
                 })}
