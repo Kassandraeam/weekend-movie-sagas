@@ -19,13 +19,14 @@ function Details() {
     // Did something similar in the giphy project where the selectedword was put into the url path for the router.get (check gif.router.js)
     const handleClick = () => {
         console.log('Handle Click')
+        console.log(movies);
     }
 
     // I need to send over the ID to my index, and then GET that information
     useEffect(() => {
         console.log('dispatch')
         dispatch({ 
-            type: 'FETCH_MOVIES',
+            type: 'FETCH_DETAILS',
             payload: params
         });
     }, []);
@@ -36,7 +37,7 @@ function Details() {
         <h1>
             Details
             <button onClick={handleClick}>Show details test</button>
-            
+
         </h1>
         </>
     )

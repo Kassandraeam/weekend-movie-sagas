@@ -32,9 +32,9 @@ function* fetchAllMovies() {
 
 function* fetchDetails(action) {
     try {
-        const response = yield axios.get(`/api/movie/${action.payload}`)
+        const response = yield axios.get(`/api/movie/details/${action.payload}`)
         yield put({
-            type: 'FETCH_DETAILS',
+            type: 'This_Needs_To_Trigger_A_Reducer_That_Stores_The_Specific_Data',
             payload: response.data
         })
     } catch (err) {
@@ -65,11 +65,31 @@ const genres = (state = [], action) => {
     }
 }
 
+// const giphyItems = (state = [], action) => {
+//     switch (action.type) {
+//       case 'GIPHY_LIST':
+//           console.log(action.payload)
+//         return action.payload.data
+//       default:
+//         return state;
+//     }
+//   };
+
+const detailsForSpecificMovie = (state = [], action) => {
+    switch (action.type) {
+      case 'FETCH_DETAILS':
+          console.log(action.payload)
+        return action.payload
+      default:
+        return state;
+    }
+  };
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
+        detailsForSpecificMovie
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
