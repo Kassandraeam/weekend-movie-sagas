@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css'
 import { useHistory } from 'react-router-dom';
+import Details from '../Details/Details';
 
-function MovieList() {
+function MovieList(props) {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -26,6 +27,9 @@ function MovieList() {
     const handleClick = (id) => {
         console.log('I have been clicked!');
         console.log(id)
+        // Now I want the User to CLICK the image they want and get sent to a specific page with the details of that movie.
+        history.push(`/details/${id}`)
+        // Now move to Details.jsx to figure out how to get the title of that specific id to show.
     }
 
     return (
@@ -37,6 +41,8 @@ function MovieList() {
                         <div key={movie.id} onClick={()=> handleClick(movie.id)}>
                             <h3>{movie.title}</h3>
                             <img src={movie.poster} alt={movie.title}/>
+                            <h5>{movie.id}</h5>
+                            <Details movieID={movie.id}/>
                         </div>
                     );
                 })}

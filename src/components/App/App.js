@@ -14,12 +14,12 @@ function App() {
         </Route>
         
         {/* Details page */}
-        <Route path="/Details">
+        <Route path='/Details:id' exact>
           <Details />
         </Route>
 
         {/* Add Movie page */}
-        <Route path="/MovieItem">
+        <Route path='/MovieItem'>
           <MovieItem />
         </Route>
 
