@@ -48,6 +48,7 @@ function Details() {
 }
 
 export default Details;
+// > Hint : You can make a GET request for a specific movie. Remember `req.params` and `:id`?
 
 // When a user clicks a specific poster (this id) they need to be brought to the details page for THAT movie and it should display:
 

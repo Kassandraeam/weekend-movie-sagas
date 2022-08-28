@@ -69,18 +69,18 @@ router.post('/', (req, res) => {
 //     })
 //   });
 
-  router.get(`/details/:id`), (req, res) => {
-    let id = req.params.id;
-    console.log(id);
-    axios.get(`api/movie/details/${id}`)
-    .then(response => {
-        console.log(response.data);
-        res.send(response.data);
-    })
-    .catch(err => {
-        console.log(err);
-        res.sendStatus(500)
-    })
+  // router.get(`/details/:id`), (req, res) => {
+  //   let id = req.params.id;
+  //   console.log(id);
+  //   axios.get(`api/movie/details/${id}`)
+  //   .then(response => {
+  //       console.log(response.data);
+  //       res.send(response.data);
+  //   })
+  //   .catch(err => {
+  //       console.log(err);
+  //       res.sendStatus(500)
+  //   })
     // const query = `SELECT * FROM movies ORDER BY "title" ASC`;
     // pool.query(query)
     //   .then( result => {
@@ -91,6 +91,22 @@ router.post('/', (req, res) => {
     //     res.sendStatus(500)
     //   })
   
+  // };
+
+  router.get(`/details/:id`), (req, res) => {
+
+    const query = `SELECT * FROM movies ORDER BY "title" ASC`;
+    pool.query(query)
+      .then( result => {
+        res.send(result.rows);
+      })
+      .catch(err => {
+        console.log('ERROR: Get all movies', err);
+        res.sendStatus(500)
+      })
+  
   };
 
 module.exports = router;
+
+// > Hint : You can make a GET request for a specific movie. Remember `req.params` and `:id`?

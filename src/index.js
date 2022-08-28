@@ -32,10 +32,10 @@ function* fetchAllMovies() {
 
 function* fetchDetails(action) {
     try {
-        const response = yield axios.get(`/api/movie`)
+        // const response = yield axios.get(`/api/movie`)
         //ok something is wrong with my response then.
         // const response = yield axios.get(`api/movie/details/${action.payload}`)
-        // const response = yield axios.get(`api/movie/details/${action.payload}`)
+        const response = yield axios.get(`api/movie/details/${action.payload}`)
 
         console.log('fetchDetails success', response)
         yield put({
@@ -43,7 +43,7 @@ function* fetchDetails(action) {
             payload: response.data
         })
     } catch (err) {
-        console.log(action.payload);
+        console.log(action.payload);//action payload is not coming back
         console.log('ERR on fetchDetails generator function', err);
     }
 }
