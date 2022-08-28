@@ -8,7 +8,7 @@ import { useState } from 'react';
 function Details() {
 
     const params = useParams();
-    const [id, setID] = useState('')
+    const [id, setID] = useState()
 
     const movies = useSelector(store => store.movies);
     const dispatch = useDispatch();
@@ -27,10 +27,11 @@ function Details() {
     useEffect(() => {
         console.log('dispatch')
         console.log(params.id);
+        console.log(typeof (params.id)) // string
         setID(params.id);
         dispatch({ 
             type: 'FETCH_DETAILS',
-            payload: id
+            payload: params.id
         });
     }, []);
 

@@ -35,12 +35,12 @@ function* fetchDetails(action) {
         // const response = yield axios.get(`/api/movie`)
         //ok something is wrong with my response then.
         // const response = yield axios.get(`api/movie/details/${action.payload}`)
-        const response = yield axios.get(`api/movie/details/${action.payload}`)
-
-        console.log('fetchDetails success', response)
+        // const response = yield axios.get(`api/movie/details/${action.payload}`)
+        // console.log('fetchDetails success', response)
+        console.log('fetchDetails success')
         yield put({
             type: 'This_Needs_To_Trigger_A_Reducer_That_Stores_The_Specific_Data',
-            payload: response.data
+            // payload: response.data
         })
     } catch (err) {
         console.log(action.payload);//action payload is not coming back
@@ -75,8 +75,9 @@ const genres = (state = [], action) => {
 const detailsForSpecificMovie = (state = [], action) => {
     switch (action.type) {
       case 'This_Needs_To_Trigger_A_Reducer_That_Stores_The_Specific_Data':
-          console.log(action.payload)
-        return action.payload
+        //   console.log(action.payload)
+        console.log('DetailsForSpecificMovie success');
+        return state
       default:
         return state;
     }
