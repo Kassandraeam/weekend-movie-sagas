@@ -54,6 +54,31 @@ router.post('/', (req, res) => {
   })
 })
 
+// router.get('/:id', (req, res) => {
+//   let id = req.params.id;
+//   const queryText = 
+//   'SELECT * FROM "movies"';
+//   pool.query(queryText, id)
+//   .then(() => {res.sendStatus(200);})
+//   .catch((err) => {
+//     console.error('Error in get', err)
+//     res.sendStatus(500);
+//   })
+// });
+router.get('/:id', (req, res) => {
+  let id = req.params.id;
+  console.log(id);
+  const queryText = 
+  'SELECT "title" FROM "movies";';
+  pool.query(queryText, [id])
+  .then(() => {res.sendStatus(200);})
+  .catch((err) => {
+    console.error('Error in get', err)
+    res.sendStatus(500);
+  })
+});
+// SELECT * FROM movies
+// WHERE id=$1;
 
 // router.get('/:searchWord', (req, res) => {
 //     let searchWord = req.params.searchWord;
@@ -93,19 +118,19 @@ router.post('/', (req, res) => {
   
   // };
 
-  router.get(`/details/:id`), (req, res) => {
+  // router.get(`/details/:id`), (req, res) => {
 
-    const query = `SELECT * FROM movies ORDER BY "title" ASC`;
-    pool.query(query)
-      .then( result => {
-        res.send(result.rows);
-      })
-      .catch(err => {
-        console.log('ERROR: Get all movies', err);
-        res.sendStatus(500)
-      })
+  //   const query = `SELECT * FROM movies ORDER BY "title" ASC`;
+  //   pool.query(query)
+  //     .then( result => {
+  //       res.send(result.rows);
+  //     })
+  //     .catch(err => {
+  //       console.log('ERROR: Get all movies', err);
+  //       res.sendStatus(500)
+  //     })
   
-  };
+  // };
 
 module.exports = router;
 

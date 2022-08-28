@@ -3,13 +3,20 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 
+// What I need:
+
+/*
+On load, I need to hit a listener in the root saga with FETCH_DETAILS
+that then runs a generator function that gets me the information for the id that I send as a payload.
+
+That generator function needs to GET information based on the id (its specific key on the database 1 = avatar, 11 = martian etc).
+It then needs to send that information to a reducer, the type allows it to know which reducer it's talking to, and the data are the details for that specific movie.
+*/
 
 
 function Details() {
 
     const params = useParams();
-    const [id, setID] = useState()
-
     const movies = useSelector(store => store.movies);
     const dispatch = useDispatch();
     // console.log(`Here is the id of the page of the movie you clicked on: ${params.id}`)
@@ -18,20 +25,16 @@ function Details() {
     // When I console log (movie) it's an empty array.
     // After adding useEffect and fetch_movies, I get the entire array. But now I want to only display the information of the id that i selected.
     // Did something similar in the giphy project where the selectedword was put into the url path for the router.get (check gif.router.js)
-    const handleClick = () => {
-        console.log('Handle Click')
-        console.log({movies});
-        console.log(movies[0].description)
-    }
+
 
     // I need to send over the ID to my index, and then GET that information
     useEffect(() => {
         // console.log('dispatch')
         // console.log(params.id);
         // console.log(typeof (params.id)) // string
-        setID(params.id);
+        // setID(params);
         dispatch({ 
-            type: 'FETCH_MOVIES',
+            type: 'FETCH_DETAILS',
             // So FETCH_MOVIES as the type gives me access to all of the movies.
             // So I want my fetchDetails function to get all movies, and then select only the id that I give it?
             payload: params.id
@@ -42,10 +45,9 @@ function Details() {
     // right now this is hardcoded. I need it to change based on id.
     return(
         <>
-        <h1>{id}</h1>
+        <h1>{params.id}</h1>
         <h1>
             Details
-            <button onClick={handleClick}>Show details test</button>
         </h1>
         {/* <p>{movies[0].title}</p>
         <img src={movies[0].poster}/>

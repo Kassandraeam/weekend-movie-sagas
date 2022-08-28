@@ -35,15 +35,22 @@ function* fetchDetails(action) {
         // const response = yield axios.get(`/api/movie`)
         //ok something is wrong with my response then.
         // const response = yield axios.get(`api/movie/details/${action.payload}`)
-        // const response = yield axios.get(`api/movie/details/${action.payload}`)
-        // console.log('fetchDetails success', response)
-        console.log('fetchDetails success')
+        // // const response = yield axios.get(`api/movie/details/${action.payload}`)
+
+        // yield put({
+        //     type: 'SET_MOVIES',
+        //     payload: response.data
+        // })
+
+        let response = yield axios.get(`/api/movie/details/${action.payload}`);
         yield put({
-            type: 'This_Needs_To_Trigger_A_Reducer_That_Stores_The_Specific_Data',
-            // payload: response.data
+          type: 'SET_MOVIES',
+          payload: response.data
         })
+
+        console.log('response data in fetchDetails function.',response.data)
     } catch (err) {
-        console.log(action.payload);//action payload is not coming back
+        console.log(action.payload);// coming back with the correct id now.
         console.log('ERR on fetchDetails generator function', err);
     }
 }
@@ -74,8 +81,8 @@ const genres = (state = [], action) => {
 
 const detailsForSpecificMovie = (state = [], action) => {
     switch (action.type) {
-      case 'This_Needs_To_Trigger_A_Reducer_That_Stores_The_Specific_Data':
-        //   console.log(action.payload)
+      case 'SET_MOVIES':
+          console.log(action.payload)
         console.log('DetailsForSpecificMovie success');
         return state
       default:
