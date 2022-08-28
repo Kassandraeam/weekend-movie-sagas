@@ -20,22 +20,26 @@ function Details() {
     // Did something similar in the giphy project where the selectedword was put into the url path for the router.get (check gif.router.js)
     const handleClick = () => {
         console.log('Handle Click')
-        console.log(movies);
+        console.log({movies});
+        console.log(movies[0].description)
     }
 
     // I need to send over the ID to my index, and then GET that information
     useEffect(() => {
-        console.log('dispatch')
-        console.log(params.id);
-        console.log(typeof (params.id)) // string
+        // console.log('dispatch')
+        // console.log(params.id);
+        // console.log(typeof (params.id)) // string
         setID(params.id);
         dispatch({ 
-            type: 'FETCH_DETAILS',
+            type: 'FETCH_MOVIES',
+            // So FETCH_MOVIES as the type gives me access to all of the movies.
+            // So I want my fetchDetails function to get all movies, and then select only the id that I give it?
             payload: params.id
         });
     }, []);
 
     // console.log(`${movies.data}`);
+    // right now this is hardcoded. I need it to change based on id.
     return(
         <>
         <h1>{id}</h1>
@@ -43,7 +47,10 @@ function Details() {
             Details
             <button onClick={handleClick}>Show details test</button>
         </h1>
-        <p>{movies.id}</p>
+        {/* <p>{movies[0].title}</p>
+        <img src={movies[0].poster}/>
+        <p>{movies[0].description}</p> */}
+    
         </>
     )
 }
