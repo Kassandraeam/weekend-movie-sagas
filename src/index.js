@@ -44,7 +44,7 @@ function* fetchDetails(action) {
 
         let response = yield axios.get(`/api/movie/details/${action.payload}`);
         yield put({
-          type: 'SET_MOVIES',
+          type: '',
           payload: response.data
         })
 
@@ -81,7 +81,7 @@ const genres = (state = [], action) => {
 
 const detailsForSpecificMovie = (state = [], action) => {
     switch (action.type) {
-      case 'SET_MOVIES':
+      case '':
           console.log(action.payload)
         console.log('DetailsForSpecificMovie success');
         return state

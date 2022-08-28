@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css'
 import { useHistory } from 'react-router-dom';
 import Details from '../Details/Details';
+import MovieItem from '../MovieItem/MovieItem';
 
-function MovieList(props) {
+function MovieList() {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -24,13 +25,13 @@ function MovieList(props) {
     }, []);
 
     // Go to the <div> key first. Here, I'm running an anonymous function when the User clicks any of these divs/posters. movie.id is sent to my handleClick function. I pass move.id into this handleClick function as 'id'. And can then console log it.
-    const handleClick = (id) => {
-        console.log('I have been clicked!');
-        console.log(id)
-        // Now I want the User to CLICK the image they want and get sent to a specific page with the details of that movie.
-        history.push(`/details/${id}`)
-        // Now move to Details.jsx to figure out how to get the title of that specific id to show.
-    }
+    // const handleClick = (id) => {
+    //     console.log('I have been clicked!');
+    //     console.log(id)
+    //     // Now I want the User to CLICK the image they want and get sent to a specific page with the details of that movie.
+    //     history.push(`/details/${id}`)
+    //     // Now move to Details.jsx to figure out how to get the title of that specific id to show.
+    // }
 
     return (
         <main>
@@ -38,13 +39,8 @@ function MovieList(props) {
             <section className="movies">
                 {movies.map(movie => {
                     return (
-                        <div key={movie.id} onClick={()=> handleClick(movie.id)}>
-                            <h3>{movie.title}</h3>
-                            <img src={movie.poster} alt={movie.title}/>
-                            <h5>{movie.id}</h5>
-                        </div>
-                    );
-                })}
+                    <MovieItem movieID={movie.id} movie={movie}/>
+                )})}
             </section>
         </main>
 

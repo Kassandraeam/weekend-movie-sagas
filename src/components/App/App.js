@@ -20,9 +20,9 @@ function App() {
         </Route>
 
         {/* Add Movie page */}
-        <Route path="/MovieItem">
+        {/* <Route path="/MovieItem">
           <MovieItem />
-        </Route>
+        </Route> */}
 
       </Router>
     </div>
