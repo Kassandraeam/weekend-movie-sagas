@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux'
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-
+import { useState } from 'react';
 
 
 
 function Details() {
 
     const params = useParams();
+    const [id, setID] = useState('')
 
     const movies = useSelector(store => store.movies);
     const dispatch = useDispatch();
@@ -26,20 +27,22 @@ function Details() {
     useEffect(() => {
         console.log('dispatch')
         console.log(params.id);
+        setID(params.id);
         dispatch({ 
             type: 'FETCH_DETAILS',
-            payload: params.id
+            payload: id
         });
     }, []);
 
     // console.log(`${movies.data}`);
     return(
         <>
+        <h1>{id}</h1>
         <h1>
             Details
             <button onClick={handleClick}>Show details test</button>
-            
         </h1>
+        <p>{movies.id}</p>
         </>
     )
 }

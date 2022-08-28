@@ -32,16 +32,16 @@ function* fetchAllMovies() {
 
 function* fetchDetails(action) {
     try {
-        // const response = yield axios.get(`/api/movie`)
+        const response = yield axios.get(`/api/movie`)
         //ok something is wrong with my response then.
-        const response = yield axios.get(`api/movie/details/${action.payload}`)
+        // const response = yield axios.get(`api/movie/details/${action.payload}`)
         // const response = yield axios.get(`api/movie/details/${action.payload}`)
 
-        console.log(response)
-        // yield put({
-        //     type: 'This_Needs_To_Trigger_A_Reducer_That_Stores_The_Specific_Data',
-        //     payload: response.data
-        // })
+        console.log('fetchDetails success', response)
+        yield put({
+            type: 'This_Needs_To_Trigger_A_Reducer_That_Stores_The_Specific_Data',
+            payload: response.data
+        })
     } catch (err) {
         console.log(action.payload);
         console.log('ERR on fetchDetails generator function', err);

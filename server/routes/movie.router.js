@@ -70,7 +70,7 @@ router.post('/', (req, res) => {
 //   });
 
   router.get(`/details/:id`), (req, res) => {
-    let id = req.params.params.id;
+    let id = req.params.id;
     console.log(id);
     axios.get(`api/movie/details/${id}`)
     .then(response => {
