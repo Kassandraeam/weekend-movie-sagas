@@ -1,4 +1,5 @@
 const express = require('express');
+const { idleCount } = require('../modules/pool');
 const router = express.Router();
 const pool = require('../modules/pool')
 
@@ -52,5 +53,44 @@ router.post('/', (req, res) => {
     res.sendStatus(500)
   })
 })
+
+
+// router.get('/:searchWord', (req, res) => {
+//     let searchWord = req.params.searchWord;
+//     console.log(searchWord);
+//     axios.get(`http://api.giphy.com/v1/gifs/search?api_key=${process.env.GIPHY_API_KEY}&q=${searchWord}&limit=9`)
+//     .then(response => {
+//         console.log(response.data);
+//         res.send(response.data);
+//     })
+//     .catch(err => {
+//         console.log(err);
+//         res.sendStatus(500)
+//     })
+//   });
+
+  router.get(`/details/:id`), (req, res) => {
+    let id = req.params.params.id;
+    console.log(id);
+    axios.get(`api/movie/details/${id}`)
+    .then(response => {
+        console.log(response.data);
+        res.send(response.data);
+    })
+    .catch(err => {
+        console.log(err);
+        res.sendStatus(500)
+    })
+    // const query = `SELECT * FROM movies ORDER BY "title" ASC`;
+    // pool.query(query)
+    //   .then( result => {
+    //     res.send(result.rows);
+    //   })
+    //   .catch(err => {
+    //     console.log('ERROR: Get all movies', err);
+    //     res.sendStatus(500)
+    //   })
+  
+  };
 
 module.exports = router;

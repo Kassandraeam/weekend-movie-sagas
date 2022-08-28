@@ -13,6 +13,10 @@ app.use(express.static('build'));
 app.use('/api/movie', movieRouter);
 app.use('/api/genre', genreRouter)
 
+// I think I need another Route. Dane said that the way I know that I need to make another route is when I need access to a table.
+
+// What I need right now are the details of the specific movie??? 
+
 /** ---------- START SERVER ---------- **/
 app.listen(port, function () {
     console.log('Listening on port: ', port);

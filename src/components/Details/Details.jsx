@@ -11,7 +11,7 @@ function Details() {
 
     const movies = useSelector(store => store.movies);
     const dispatch = useDispatch();
-    console.log(`Here is the id of the page of the movie you clicked on: ${params.id}`)
+    // console.log(`Here is the id of the page of the movie you clicked on: ${params.id}`)
 
 
     // When I console log (movie) it's an empty array.
@@ -25,9 +25,10 @@ function Details() {
     // I need to send over the ID to my index, and then GET that information
     useEffect(() => {
         console.log('dispatch')
+        console.log(params.id);
         dispatch({ 
             type: 'FETCH_DETAILS',
-            payload: params
+            payload: params.id
         });
     }, []);
 
@@ -37,7 +38,7 @@ function Details() {
         <h1>
             Details
             <button onClick={handleClick}>Show details test</button>
-
+            
         </h1>
         </>
     )

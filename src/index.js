@@ -32,12 +32,18 @@ function* fetchAllMovies() {
 
 function* fetchDetails(action) {
     try {
-        const response = yield axios.get(`/api/movie/details/${action.payload}`)
-        yield put({
-            type: 'This_Needs_To_Trigger_A_Reducer_That_Stores_The_Specific_Data',
-            payload: response.data
-        })
+        // const response = yield axios.get(`/api/movie`)
+        //ok something is wrong with my response then.
+        const response = yield axios.get(`api/movie/details/${action.payload}`)
+        // const response = yield axios.get(`api/movie/details/${action.payload}`)
+
+        console.log(response)
+        // yield put({
+        //     type: 'This_Needs_To_Trigger_A_Reducer_That_Stores_The_Specific_Data',
+        //     payload: response.data
+        // })
     } catch (err) {
+        console.log(action.payload);
         console.log('ERR on fetchDetails generator function', err);
     }
 }
@@ -65,19 +71,10 @@ const genres = (state = [], action) => {
     }
 }
 
-// const giphyItems = (state = [], action) => {
-//     switch (action.type) {
-//       case 'GIPHY_LIST':
-//           console.log(action.payload)
-//         return action.payload.data
-//       default:
-//         return state;
-//     }
-//   };
 
 const detailsForSpecificMovie = (state = [], action) => {
     switch (action.type) {
-      case 'FETCH_DETAILS':
+      case 'This_Needs_To_Trigger_A_Reducer_That_Stores_The_Specific_Data':
           console.log(action.payload)
         return action.payload
       default:
